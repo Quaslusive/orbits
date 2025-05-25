@@ -23454,19 +23454,5 @@ JPL.Config = {
         enableStars : false,
         enableMap : false,
         enableConstellations : false
-    };
-
-	    window.loadOrbitFromFlutter = function(params) {
-      console.log("Received orbit from Flutter:", params);
-      viewer.drawOrbit({
-        semiMajorAxis: params.semiMajorAxis,
-        eccentricity: params.eccentricity,
-        inclination: params.inclination,
-        ascendingNode: params.ascendingNode,
-        argumentOfPeriapsis: params.argumentOfPeriapsis,
-        meanAnomaly: params.meanAnomaly,
-        name: params.name
-      });
-    };
-
+    }
 };
