@@ -412,5 +412,25 @@ The module is written in JavaScript, and it makes use of WebGL via the open-sour
     <script src="include.js"></script>
     <script src="main.js"></script>
     <script src="ui.js"></script>
+    <script>
+        window.loadOrbitFromFlutter = function(params) {
+            console.log("✅ Received orbit from Flutter:", params);
+
+            if (typeof viewer !== "undefined" && typeof viewer.drawOrbit === "function") {
+                viewer.drawOrbit({
+                    semiMajorAxis: params.semiMajorAxis,
+                    eccentricity: params.eccentricity,
+                    inclination: params.inclination,
+                    ascendingNode: params.ascendingNode,
+                    argumentOfPeriapsis: params.argumentOfPeriapsis,
+                    meanAnomaly: params.meanAnomaly,
+                    name: params.name
+                });
+            } else {
+                console.warn("⚠️ Viewer is not ready yet.");
+            }
+        };
+    </script>
+
 </body>
 </html>
