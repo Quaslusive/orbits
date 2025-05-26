@@ -338,6 +338,10 @@ The viewer controls are presented in four rows:
                     <h4 class="modal-title">About</h4>
                 </div>
                 <div class="modal-body">
+
+                    <div id="viewer" style="width:100%; height:100%;"></div>
+
+
                     <p>The orbit viewer was initially developed at JPL in 2018 by Kevin Gill
 with contributions from Paul Chodas, Javier Roa, and Alan Chamberlin. It was further
 updated, some orbital parameters improved, and further containerized for integration into PSG by Geronimo Villanueva at GSFC.
@@ -412,7 +416,8 @@ The module is written in JavaScript, and it makes use of WebGL via the open-sour
     <script src="include.js"></script>
     <script src="main.js"></script>
     <script src="ui.js"></script>
-    <script>
+    <script src="orbitviewer.js"></script>
+<!--    <script>
         window.loadOrbitFromFlutter = function(params) {
             console.log("✅ Received orbit from Flutter:", params);
 
@@ -430,7 +435,7 @@ The module is written in JavaScript, and it makes use of WebGL via the open-sour
                 console.warn("⚠️ Viewer is not ready yet.");
             }
         };
-    </script>
+    </script>-->
 
 </body>
 </html>
