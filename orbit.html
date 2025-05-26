@@ -417,25 +417,44 @@ The module is written in JavaScript, and it makes use of WebGL via the open-sour
     <script src="main.js"></script>
     <script src="ui.js"></script>
     <script src="orbitviewer.js"></script>
-<!--    <script>
-        window.loadOrbitFromFlutter = function(params) {
-            console.log("✅ Received orbit from Flutter:", params);
-
-            if (typeof viewer !== "undefined" && typeof viewer.drawOrbit === "function") {
-                viewer.drawOrbit({
-                    semiMajorAxis: params.semiMajorAxis,
-                    eccentricity: params.eccentricity,
-                    inclination: params.inclination,
-                    ascendingNode: params.ascendingNode,
-                    argumentOfPeriapsis: params.argumentOfPeriapsis,
-                    meanAnomaly: params.meanAnomaly,
-                    name: params.name
-                });
-            } else {
-                console.warn("⚠️ Viewer is not ready yet.");
+    <script>
+        window.addEventListener("DOMContentLoaded", function () {
+            const viewerContainer = document.getElementById("viewer");
+            if (!viewerContainer) {
+                console.error("❌ Missing <div id='viewer'> element!");
+                return;
             }
-        };
-    </script>-->
+
+            window.viewer = new OrbitViewer({
+                elementId: "viewer",
+                options: {
+                    showStats: false,
+                    enableControls: true,
+                    enableZoom: true
+                }
+            });
+
+            console.log("✅ OrbitViewer initialized");
+
+            window.loadOrbitFromFlutter = function(params) {
+                console.log("📡 Orbit received from Flutter:", params);
+
+                if (typeof viewer !== "undefined" && typeof viewer.drawOrbit === "function") {
+                    viewer.drawOrbit({
+                        semiMajorAxis: params.semiMajorAxis,
+                        eccentricity: params.eccentricity,
+                        inclination: params.inclination,
+                        ascendingNode: params.ascendingNode,
+                        argumentOfPeriapsis: params.argumentOfPeriapsis,
+                        meanAnomaly: params.meanAnomaly,
+                        name: params.name
+                    });
+                } else {
+                    console.warn("⚠️ Viewer not ready yet.");
+                }
+            };
+        });
+    </script>
 
 </body>
 </html>
