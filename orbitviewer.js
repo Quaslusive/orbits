@@ -24,8 +24,10 @@
 
     OrbitViewer.prototype.drawOrbit = function (params) {
         console.log("📈 Drawing orbit with parameters:", params);
-        // Real orbit drawing logic goes here
+        const container = document.getElementById(this.elementId);
+        container.innerHTML += `<p style="color:lime;">🛰️ Drawing orbit for ${params.name}</p>`;
     };
+
 
     global.OrbitViewer = OrbitViewer;
 

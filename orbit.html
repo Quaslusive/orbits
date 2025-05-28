@@ -442,7 +442,7 @@ The module is written in JavaScript, and it makes use of WebGL via the open-sour
                 if (typeof viewer !== "undefined" && typeof viewer.drawOrbit === "function") {
 
 
-                    viewer.drawOrbit({
+              /*      viewer.drawOrbit({
                         semiMajorAxis: 1.2,
                         eccentricity: 0.3,
                         inclination: 5.0,
@@ -450,15 +450,15 @@ The module is written in JavaScript, and it makes use of WebGL via the open-sour
                         argumentOfPeriapsis: 45.0,
                         meanAnomaly: 0.0,
                         name: "Demo"
-
-                /*    viewer.drawOrbit({
+*/
+                   viewer.drawOrbit({
                         semiMajorAxis: params.semiMajorAxis,
                         eccentricity: params.eccentricity,
                         inclination: params.inclination,
                         ascendingNode: params.ascendingNode,
                         argumentOfPeriapsis: params.argumentOfPeriapsis,
                         meanAnomaly: params.meanAnomaly,
-                        name: params.name*/
+                        name: params.name
                     });
                 } else {
                     console.warn("⚠️ Viewer not ready yet.");
