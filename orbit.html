@@ -438,11 +438,26 @@ The module is written in JavaScript, and it makes use of WebGL via the open-sour
 
             window.loadOrbitFromFlutter = function(params) {
                 console.log("📡 Orbit received from Flutter:", params);
+
+                if (typeof viewer !== "undefined" && typeof viewer.drawOrbit === "function") {
+                    viewer.drawOrbit(params);
+                    return "✅ Orbit drawn: " + params.name;
+                } else {
+                    console.warn("⚠️ Viewer not ready.");
+                    return "❌ Viewer not ready";
+                }
+            };
+
+
+
+        /*    window.loadOrbitFromFlutter = function(params) {
+                console.log("📡 Orbit received from Flutter:", params);
                 viewer.drawOrbit(params);
+
                 if (typeof viewer !== "undefined" && typeof viewer.drawOrbit === "function") {
 
 
-              /*      viewer.drawOrbit({
+              /!*      viewer.drawOrbit({
                         semiMajorAxis: 1.2,
                         eccentricity: 0.3,
                         inclination: 5.0,
@@ -450,7 +465,7 @@ The module is written in JavaScript, and it makes use of WebGL via the open-sour
                         argumentOfPeriapsis: 45.0,
                         meanAnomaly: 0.0,
                         name: "Demo"
-*/
+*!/
                    viewer.drawOrbit({
                         semiMajorAxis: params.semiMajorAxis,
                         eccentricity: params.eccentricity,
@@ -460,10 +475,16 @@ The module is written in JavaScript, and it makes use of WebGL via the open-sour
                         meanAnomaly: params.meanAnomaly,
                         name: params.name
                     });
+                    console.log(params.semiMajorAxis)
+                    console.log(params.eccentricity)
+                    console.log(params.inclination)
+                    console.log(params.ascendingNode)
+                    console.log(params.argumentOfPeriapsis)
+                    console.log(params.meanAnomaly)
                 } else {
                     console.warn("⚠️ Viewer not ready yet.");
                 }
-            };
+            };*/
         });
     </script>
 
