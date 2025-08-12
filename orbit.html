@@ -341,13 +341,8 @@ The viewer controls are presented in four rows:
 
                     <div id="viewer" style="width:100%; height:100%;"></div>
 
+                    <p>The orbit viewer was initially developed at JPL in 2018 by Kevin Gill with contributions from Paul Chodas, Javier Roa, and Alan Chamberlin.</p>
 
-                    <p>The orbit viewer was initially developed at JPL in 2018 by Kevin Gill
-with contributions from Paul Chodas, Javier Roa, and Alan Chamberlin. It was further
-updated, some orbital parameters improved, and further containerized for integration into PSG by Geronimo Villanueva at GSFC.
-The module is written in JavaScript, and it makes use of WebGL via the open-source <code>three.js</code> package.</p>
-                    <p>The orbital calculations implement 2-body methods, and hence <b>should not be used</b>
-                      for determining accurate long-term trajectories (over several years or decades) or planetary encounter circumstances. For accurate long-term ephemerides, please instead use the
 <a href="https://ssd.jpl.nasa.gov/?horizons" target="_blank">Horizons system</a>.</p>
                 </div>
                 <div class="modal-footer">
@@ -441,6 +436,24 @@ The module is written in JavaScript, and it makes use of WebGL via the open-sour
                 viewer.drawOrbit(params);
                 if (typeof viewer !== "undefined" && typeof viewer.drawOrbit === "function") {
 
+                    window.addEventListener("DOMContentLoaded", function () {
+                        // ...existing viewer setup...
+
+                        // Load orbit for 2010 PK9 after viewer is initialized
+                        const pk9Orbit = {
+                            semiMajorAxis: 0.6820856911517545,
+                            eccentricity: 0.6758435764026873,
+                            inclination: 12.58725238186114,
+                            ascendingNode: 306.5069351665489,
+                            argumentOfPeriapsis: 195.6453414534589,
+                            meanAnomaly: 204.4546609094758,
+                            name: "2010 PK9"
+                        };
+
+                        if (typeof window.viewer !== "undefined" && typeof viewer.drawOrbit === "function") {
+                            viewer.drawOrbit(pk9Orbit);
+                        }
+                    });
 
               /*      viewer.drawOrbit({
                         semiMajorAxis: 1.2,
@@ -451,7 +464,7 @@ The module is written in JavaScript, and it makes use of WebGL via the open-sour
                         meanAnomaly: 0.0,
                         name: "Demo"
 */
-                   viewer.drawOrbit({
+         /*          viewer.drawOrbit({
                         semiMajorAxis: params.semiMajorAxis,
                         eccentricity: params.eccentricity,
                         inclination: params.inclination,
@@ -459,7 +472,8 @@ The module is written in JavaScript, and it makes use of WebGL via the open-sour
                         argumentOfPeriapsis: params.argumentOfPeriapsis,
                         meanAnomaly: params.meanAnomaly,
                         name: params.name
-                    });
+                    });*/
+
                 } else {
                     console.warn("⚠️ Viewer not ready yet.");
                 }
